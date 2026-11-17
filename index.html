@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User & Product Management</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <aside class="section-sidebar">
+        <div class="sidebar">
+          <a href="#" class="logo">User Management</a>
+          <div class="links">
+            <a onclick="openUser()" href="#" class="users-link active">Users</a>
+            <a onclick="openProducts()" href="#" class="products-link"
+              >Products</a
+            >
+          </div>
+        </div>
+      </aside>
+
+      <!-- 1. USER SECTION -->
+      <section class="user-section">
+        <section class="main-section">
+          <div class="top-bar">
+            <h1>Users</h1>
+            <button class="add-btn">Add user</button>
+          </div>
+
+          <div class="users-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Image</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Age</th>
+                  <th>Role</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody class="users-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="modal-overlay hidden" id="userModal">
+          <div class="modal-container">
+            <div class="modal-header">
+              <h2>Foydalanuvchi ma'lumotlari</h2>
+              <button type="button" class="close-btn">&times;</button>
+            </div>
+
+            <form class="user-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">Ism (First Name)</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Masalan: Diyor"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="lastName">Familiya (Last Name)</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Masalan: Usmonov"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="diyor@gmail.com"
+                  required
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="age">Yosh (Age)</label>
+                  <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="1"
+                    max="120"
+                    placeholder="30"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="role">Lavozim (Role)</label>
+                  <select id="role" name="role" required>
+                    <option value="" disabled selected>Tanlang...</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="User">User</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="image">Rasm havolasi (Image URL)</label>
+                <input
+                  type="url"
+                  id="image"
+                  name="image"
+                  placeholder="https://randomuser.me/api/portraits/men/64.jpg"
+                  required
+                />
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn cancel-btn">
+                  Bekor qilish
+                </button>
+                <button type="submit" class="btn submit-btn">Saqlash</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. PRODUCT SECTION -->
+      <section class="product-section hidden">
+        <section class="main-section">
+          <div class="top-bar">
+            <h1>Products</h1>
+            <button class="add-product-btn">Add product</button>
+          </div>
+
+          <div class="products-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Image</th>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody class="products-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="product-overlay hidden" id="productModal">
+          <div class="modal-container">
+            <div class="modal-header">
+              <h2>Mahsulot ma'lumotlari</h2>
+              <button type="button" class="close-product-btn">&times;</button>
+            </div>
+
+            <form class="product-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="productName">Mahsulot nomi</label>
+                  <input
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    placeholder="Masalan: iPhone 15 Pro"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="category">Kategoriya</label>
+                  <select id="category" name="category" required>
+                    <option value="" disabled selected>Tanlang...</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Accessories">Accessories</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="price">Narxi ($)</label>
+                  <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    min="0"
+                    step="0.01"
+                    placeholder="999"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="stock">Soni (Stock)</label>
+                  <input
+                    type="number"
+                    id="stock"
+                    name="stock"
+                    min="0"
+                    placeholder="15"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="productImage">Rasm havolasi (Image URL)</label>
+                <input
+                  type="url"
+                  id="productImage"
+                  name="productImage"
+                  placeholder="https://example.com/product.jpg"
+                  required
+                />
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn cancel-product-btn">
+                  Bekor qilish
+                </button>
+                <button type="submit" class="btn submit-btn">Saqlash</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
